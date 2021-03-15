@@ -1,29 +1,30 @@
 {
-  "name": "express-rest-boilerplate",
+  "name": "crowdsourcing",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    " start dev":"nodemon index.js"
+    "dev":"nodemon app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vaishnav-197/Express-Rest-Boilerplate.git"
+    "url": "git+https://github.com/vaishnav-197/Crowdsourcing.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vaishnav-197/Express-Rest-Boilerplate/issues"
+    "url": "https://github.com/vaishnav-197/Crowdsourcing/issues"
   },
-  "homepage": "https://github.com/vaishnav-197/Express-Rest-Boilerplate#readme",
+  "homepage": "https://github.com/vaishnav-197/Crowdsourcing#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "chalk": "^4.1.0",
     "cors": "^2.8.5",
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "mongoose": "^5.11.17",
+    "express-ejs-layouts": "^2.5.0",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.7"
   }
