@@ -60,6 +60,7 @@ body {
       color: #fff;
       background-color: #1EA5F7;
       border: 1px solid transparent;
+      border-radius: 14px;
       margin-top: 60px;
       text-decoration: none;
       transition: 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86); }
