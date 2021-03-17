@@ -16,6 +16,7 @@ const app = express();
 app.use(express.static(__dirname + '/public'));
 // EJS
 app.use(expressLayouts);
+app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 
