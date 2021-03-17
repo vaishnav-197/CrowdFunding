@@ -7,6 +7,18 @@ const morgan = require('morgan')
 var path = require('path');
 const routes = require('./routes/route')
 
+  
+var firebase = require("firebase-admin");
+
+var serviceAccount = require("./serviceaccount.json");
+
+// firebase
+firebase.initializeApp({
+    credential: firebase.credential.cert(serviceAccount),
+    databaseURL: "https://edu-donor-default-rtdb.firebaseio.com/"
+  });
+
+var db = firebase.database();
 
 
 
@@ -44,4 +56,8 @@ const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
  console.log(chalk.blue('listening on port ')+ chalk.green(PORT));
+ console.log('http://localhost:4000/');
 });
+
+
+
