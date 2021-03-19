@@ -35,7 +35,7 @@ router.get('/signup', (req, res) => res.render('signup'));
 
 router.get('/dashboard', (req, res) => res.render('dashboard'));
 
-<<<<<<< HEAD
+
 router.get("/profile", function (req, res) {
 const sessionCookie = req.cookies.session || "";
 
@@ -76,9 +76,9 @@ router.get("/sessionLogout", (req, res) => {
   res.clearCookie("session");
   res.redirect("/login");
 });
-=======
+
 router.get('/form', (req, res) => res.render('form'));
->>>>>>> 8f58d83f9008dcbdaae7343ea2d5e5b0a7fd2b25
+
 
 
 
