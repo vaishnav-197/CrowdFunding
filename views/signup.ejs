@@ -12,17 +12,23 @@
                         <div class="row justify-content-center px-3 mb-3"></div>
                         <h3 class="mb-5 text-center heading">Signup</h3>
                         <h6 class="msg-info">Create a new account</h6>
-                        <div class="form-group"> <label class="form-control-label text-muted">Username</label> <input type="text" id="email" name="email" placeholder="Name" class="form-control"> </div>
-                        <div class="form-group"> <label class="form-control-label text-muted">Email-id</label> <input type="e-mail" id="psw" name="psw" placeholder="Email-id" class="form-control"> </div>
-
-                        <div class="form-group"> <label class="form-control-label text-muted">Password</label> <input type="password" id="psw" name="psw" placeholder="Password" class="form-control"> </div>
-                        <div class="form-group"> <label class="form-control-label text-muted">Confirm Password </label> <input type="password" id="psw" name="psw" placeholder="Confirm Password" class="form-control"> </div>
-                        <div class="form-group"> <label class="form-control-label text-muted">Country</label> <input type="text" id="psw" name="psw" placeholder="Country" class="form-control"> </div>
-                        <div class="form-group"> <label class="form-control-label text-muted">Phone no.</label> <input type="text" id="psw" name="psw" placeholder="Phone no." class="form-control"> </div>
-
-
-
-                        <div class="row justify-content-center my-3 px-3"> <button class="btn-block btn-color">Signup</button> </div>
+                        <form id="signup">
+                            <!--<div class="form-group"> <label class="form-control-label text-muted">Username</label> <input type="text" id="username" name="username" placeholder="Name" class="form-control"> </div>-->
+                            <div class="form-group"> 
+                              <label class="form-control-label text-muted">Email-id</label>
+                              <input type="e-mail" id="email" name="email" placeholder="Email-id" class="form-control"> 
+                            </div>
+                            <div class="form-group"> 
+                              <label class="form-control-label text-muted">Password</label>
+                              <input type="password" id="password" name="password" placeholder="Password" class="form-control">
+                            </div>
+                            <!--<div class="form-group"> <label class="form-control-label text-muted">Country</label> <input type="text" id="country" name="country" placeholder="Country" class="form-control"> </div>-->
+                            <!--<div class="form-group"> <label class="form-control-label text-muted">Phone no.</label> <input type="text" id="phonenumber" name="phonenumber" placeholder="Phone no." class="form-control"> </div>-->
+                            <div class="row justify-content-center my-3 px-3"> 
+                              <button class="btn-block btn-color">Signup</button> 
+                            </div>
+                        </form>
+                        
                         
                     </div>
                 </div>
@@ -36,4 +42,65 @@
         </div>
     </div>
 </div>
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+
+
+
+
+
+      <script>
+        window.addEventListener("DOMContentLoaded", () => {
+        var firebaseConfig = {
+          apiKey: "AIzaSyADAA9RU2mDgGILkwBaDRC3a_OobFXroGw",
+          authDomain: "crowdsourcing-58297.firebaseapp.com",
+          databaseURL: "https://crowdsourcing-58297-default-rtdb.firebaseio.com",
+          projectId: "crowdsourcing-58297",
+          storageBucket: "crowdsourcing-58297.appspot.com",
+          messagingSenderId: "107913326719",
+          appId: "1:107913326719:web:bfd6f81131a87a2c12cf4a",
+          measurementId: "G-PLHPKG6CP0"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
+
+        document
+          .getElementById("signup")
+          .addEventListener("submit", (event) => {
+            event.preventDefault();
+            const login = event.target.email.value;
+            const password = event.target.password.value;
+
+            firebase
+              .auth()
+              .createUserWithEmailAndPassword(login, password)
+              .then(({ user }) => {
+                return user.getIdToken().then((idToken) => {
+                  return fetch("/sessionLogin", {
+                    method: "POST",
+                    headers: {
+                      Accept: "application/json",
+                      "Content-Type": "application/json",
+                      "CSRF-Token": Cookies.get("XSRF-TOKEN"),
+                    },
+                    body: JSON.stringify({ idToken }),
+                  });
+                });
+              })
+              .then(() => {
+                return firebase.auth().signOut();
+              })
+              .then(() => {
+                window.location.assign("/profile");
+              });
+            return false;
+          });
+
+    
+        });
+      </script>
 

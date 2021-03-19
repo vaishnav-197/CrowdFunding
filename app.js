@@ -4,26 +4,20 @@ const chalk = require('chalk');
 const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
+const cookieParser = require("cookie-parser");
+const csrf = require('csurf')
 var path = require('path');
 const routes = require('./routes/route')
-
-  
-var firebase = require("firebase-admin");
-
-var serviceAccount = require("./serviceaccount.json");
-
-// firebase
-firebase.initializeApp({
-    credential: firebase.credential.cert(serviceAccount),
-    databaseURL: "https://edu-donor-default-rtdb.firebaseio.com/"
-  });
-
-var db = firebase.database();
-
+const csrfMiddleware = csrf({ cookie: true });
 
 
 
 const app = express();
+
+
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(csrfMiddleware);
 
 app.use(express.static(__dirname + '/public'));
 // EJS
@@ -34,13 +28,6 @@ app.set('view engine', 'ejs');
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-
-
-
-
-
 
 
 app.use(
@@ -50,14 +37,10 @@ app.use(
 app.use('/',routes);
 
 
-
-
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
  console.log(chalk.blue('listening on port ')+ chalk.green(PORT));
  console.log('http://localhost:4000/');
 });
-
-
 
