@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 var admin = require("firebase-admin");
-
+var dbfunction = require('../db/db')
 //firebase config
 
 
@@ -9,17 +9,20 @@ var serviceAccount = require("../serviceaccount.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://crowdsourcing-58297-default-rtdb.firebaseio.com"
+  databaseURL: "https://edu-donor-default-rtdb.firebaseio.com"
 });
 
 
 
 //csrf
 
-router.all("*", (req, res, next) => {
-    res.cookie("XSRF-TOKEN", req.csrfToken());
-    next();
-  });
+// router.all("*", (req, res, next) => {
+//     res.cookie("XSRF-TOKEN", req.csrfToken());
+//     next();
+//   });
+
+
+
 
 
 // Add routes here
@@ -33,22 +36,54 @@ router.get('/login', (req, res) => res.render('login'));
 
 router.get('/signup', (req, res) => res.render('signup'));
 
-router.get('/dashboard', (req, res) => res.render('dashboard'));
 
 
-router.get("/profile", function (req, res) {
+
+
+
+// dash
+
+
+router.get("/dashboard", function (req, res) {
 const sessionCookie = req.cookies.session || "";
 
 admin
   .auth()
   .verifySessionCookie(sessionCookie, true /** checkRevoked */)
-  .then(() => {
-    res.render("profile");
+  .then((user) => {
+    console.log(user.email)
+    var response =  dbfunction.showdashboard(user.email)
+    console.log("|")
+    response.then((result)=> {
+      var data = []
+
+      result.forEach(doc => {
+      data.push(doc.data())
+        });
+      return data
+      
+      
+    }).then((resp)=> {
+      console.log(resp)
+      
+      res.render('dashboard' , {data:resp})
+    })
+    
   })
   .catch((error) => {
+    console.log(error)
     res.redirect("/login");
   });
+
+  
+
+
 });
+
+
+
+
+
 
 //session 
 
@@ -77,8 +112,33 @@ router.get("/sessionLogout", (req, res) => {
   res.redirect("/login");
 });
 
-router.get('/form', (req, res) => res.render('form'));
 
+
+
+
+
+
+
+
+router.get('/form', (req, res) => {
+  const sessionCookie = req.cookies.session || "";
+  admin
+  .auth()
+  .verifySessionCookie(sessionCookie, true /** checkRevoked */)
+  .then((user) => {
+    console.log(user.email)
+    res.render("form");
+  })
+  .catch((error) => {
+    res.redirect("/login");
+  });
+  
+} );
+
+router.post('/add', 
+    dbfunction.adddata
+  )
+  
 
 
 

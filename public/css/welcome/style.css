@@ -6,6 +6,10 @@
 body {
   font-family: 'Poppins', sans-serif; }
 
+.line{
+  border: 0.1px solid  rgb(78, 75, 75);
+}
+
 .head__custom-nav .navbar-brand img {
   width: 18px;
   height: 18px; }
@@ -84,5 +88,8 @@ body {
     position: absolute;
     top: -13.5rem;
     right: 2.9rem; }
+
+
+  
 
 /*# sourceMappingURL=style.css.map */

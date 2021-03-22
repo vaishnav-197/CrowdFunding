@@ -9,7 +9,7 @@ const csrf = require('csurf')
 var path = require('path');
 const routes = require('./routes/route')
 const csrfMiddleware = csrf({ cookie: true });
-
+var firebase = require('firebase')
 
 
 const app = express();
@@ -17,7 +17,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(csrfMiddleware);
+// app.use(csrfMiddleware);
 
 app.use(express.static(__dirname + '/public'));
 // EJS
