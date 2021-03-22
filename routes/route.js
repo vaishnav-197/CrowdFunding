@@ -53,14 +53,19 @@ admin
   .then((user) => {
     console.log(user.email)
     var response =  dbfunction.showdashboard(user.email)
-    console.log("|")
+    
     response.then((result)=> {
       var data = []
-
-      result.forEach(doc => {
-      data.push(doc.data())
-        });
-      return data
+      if(result==''){
+        return ''
+      }
+      else{
+        result.forEach(doc => {
+          data.push(doc.data())
+            });
+          return data
+      }
+      
       
       
     }).then((resp)=> {
