@@ -13,12 +13,12 @@ var dbfunctions = {
     name: req.body.name,
     country: req.body.role,
     school : req.body.address,
-    amount:req.body.amount,
+    amount:parent(req.body.amount),
     email:req.body.email,
     prefer:req.body.prefer,
     comment:req.body.comment,
     contact: req.body.contact,
-    received: 0
+    received: parseInt(0)
   });
   
   if(response){
@@ -36,8 +36,8 @@ var dbfunctions = {
 
     showdashboard : async function (user) {
       const db = admin.firestore();
-      const citiesRef = db.collection('user');
-      const snapshot = await citiesRef.where('email', '==', user).get();
+      const docs = db.collection('user');
+      const snapshot = await docs.where('email', '==', user).get();
       if (snapshot.empty) {
         // console.log('No matching documents.');
         return '';
@@ -48,6 +48,24 @@ var dbfunctions = {
       
      
 
+    },
+
+
+
+    showdonate: async function() {
+      const db = admin.firestore();
+      const citiesRef = db.collection('user');
+      const snapshot = await citiesRef.get();
+      
+      if (snapshot.empty) {
+      console.log('No matching documents.');
+      return;
+      }  
+
+      // snapshot.forEach(doc => {
+      //   console.log(doc.id, '=>', doc.data());
+      // });
+      return snapshot
     }
 
 

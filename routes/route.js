@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 var admin = require("firebase-admin");
+const dbfunctions = require('../db/db');
 var dbfunction = require('../db/db')
 //firebase config
 
@@ -30,7 +31,7 @@ admin.initializeApp({
 
 router.get('/', (req, res) => res.render('welcome'));
 
-router.get('/donate', (req, res) => res.render('donate'));
+
 
 router.get('/login', (req, res) => res.render('login'));
 
@@ -69,7 +70,7 @@ admin
       
       
     }).then((resp)=> {
-      console.log(resp)
+      // console.log(resp)
       
       res.render('dashboard' , {data:resp})
     })
@@ -131,7 +132,7 @@ router.get('/form', (req, res) => {
   .auth()
   .verifySessionCookie(sessionCookie, true /** checkRevoked */)
   .then((user) => {
-    console.log(user.email)
+    // console.log(user.email)
     res.render("form");
   })
   .catch((error) => {
@@ -144,6 +145,28 @@ router.post('/add',
     dbfunction.adddata
   )
   
+router.get('/donate', (req,res) => {
+  var result = dbfunctions.showdonate()
+  
+  result.then((data)=> {
+    var objects = []
+    if(result==''){
+      return ''
+    }
+    else{
+      data.forEach(doc => {
+        objects.push(doc.data())
+      });
+      return objects
+    }
+    
+  }).then((data) => {
+    res.render('donate', {data:data})
+  })
+  
+});
+
+
 
 
 

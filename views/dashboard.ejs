@@ -3,13 +3,7 @@
 
 
 <!-- added plan successfully -->
-<% if (typeof plan != 'undefined') { %>
-  <script>
-    alert('Plan added Successfully')
-  </script>
-  <%} else { %>
-    
-  <% } %>
+
 
 <div class="main">
   <div class="row">
@@ -17,57 +11,66 @@
     <div class="col-sm-4"><h1><button class="btn1"><a href="/form" style="color: white;">Add a Plan</a></button><button  class="btn1"><a href="/sessionlogout" style="color: white;">Logout</a></button></h1></div>
   </div>
   <% if (typeof data != 'undefined') { %>
-  <% if (data != '') { %>
-    <ul class="cards">
+    <% if (data != '') { %>
+       
+      <ul class="cards">
       <% data.forEach(function(datas){ %>
         
+        <% if (datas.amount != datas.received) { %>
           <li class="cards_item">
             <div class="card">
               <div class="card_image"><img src="/images/d1.jpg"></div>
               <div class="card_content">
                 <h2 class="card_title"><%= datas.name %></h2>
-                <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
-                <button class="btn card_btn">Read More</button>
+                <p class="card_text"> <b> Description: </b><%=datas.comment %></p>
+                <p class="card_text"><b> Budget: </b><%=datas.amount %></p>
+                <p class="card_text"><b> Received: </b><%=datas.received %></p>
+                <button class="btn card_btn"> <b>Read More</b> </button>
               </div>
             </div>
           </li>
           
+          <% } %>
         <% }) %>
       </ul>
       
-    
-    <%} else { %>
-      <p>No Ongoing Plans </p>
-    <% } %>
-
-    <% } %>
+      <%} else { %>
+        <p>No Plans Avaliable</p>
+        <% } %>
+      <% } %>
     
     <!-- <h5>Somalia High School</h5> -->
     
     <h1>Fulfilled Plans</h1>
     <% if (typeof data != 'undefined') { %>
     <% if (data != '') { %>
-
+      
       <ul class="cards">
       <% data.forEach(function(datas){ %>
         
+        <% if (datas.amount == datas.received) { %>
           <li class="cards_item">
             <div class="card">
               <div class="card_image"><img src="/images/d1.jpg"></div>
               <div class="card_content">
                 <h2 class="card_title"><%= datas.name %></h2>
-                <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+                <p class="card_text"> <b> Description: </b><%=datas.comment %></p>
+                
+                <p class="card_text"><b> Received: </b><%=datas.received %></p>
+                
                 <button class="btn card_btn">Read More</button>
               </div>
             </div>
           </li>
           
+          <%}  %>
+            
         <% }) %>
       </ul>
       
       <%} else { %>
-        <p>No Fullfilled Plans </p>
-      <% } %>
+        <p>no plans avaliable</p>
+        <% } %>
       <% } %>
       
       
