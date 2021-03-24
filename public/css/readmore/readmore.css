@@ -1,0 +1,134 @@
+/* 
+COLORS - SAND: #CCC5B9, DARK BROWN: #252422, BLUE: #577590
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Quicksand', serif;
+  font-size: 13.5px;
+  color: #fff;
+}
+
+body {
+    color:#000;
+}
+
+.wrapper {
+  height: 100vh;
+  position: relative;
+  background-color:rgb(209, 214, 219);
+}
+
+.card {
+  max-width: 70rem;
+  position: relative;
+  display: flex;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: -2rem 2rem 3.2rem rgba(0, 0, 0, 0.2);
+}
+
+.product-left {
+  height: auto;
+  width: 100%;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  background:#fff;
+  color: #000;  
+}
+
+
+.header h1 {
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0rem 0 2rem 0;
+  font-size: 2.5rem;
+}
+
+/* Price */
+
+.header h3 {
+  margin: 0rem 0 0rem 0;
+  font-weight: 300;
+  }
+
+/* Product Description */
+
+.product-main p {
+  opacity: 0.7;
+  margin: 2rem 0;
+  line-height: 1.6;
+  font-size: 1.2rem;
+}
+
+.focus {
+  text-transform: uppercase;
+  margin: 0 0 1.5rem 0;
+  padding: 0rem 0 0rem 0;
+  border-bottom: 0.15rem solid #1EA5F7;
+}
+
+.focus span:first-child {
+  
+  padding: 0 0 0.9rem 0;
+}
+
+/* Choose color / quantity  */
+
+.btns-group {
+  width: 100%;
+  margin: 0 0 2rem 0;
+}
+
+/* Total Price  */
+
+.product-total {
+  margin: 0 0 2rem 0;
+}
+
+.product-total p {
+  font-weight: 700;
+  color: #000;
+  font-size: 2rem;
+}
+
+.product-total h3{
+  margin: 0 0 1rem 0;
+}
+
+
+/* Add to cart button  */
+
+.product-add {
+  border: 1px solid #fff;
+  font-size: 1.5rem;
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 5rem;
+  transition: all 0.5s ease-out;
+}
+
+.product-add:hover {
+  background-color: #6dc4fa;
+  color: #2e282a;
+}
+
+.product-btns a {
+  text-decoration: none;
+  background-color: #1EA5F7;
+  color:#000;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
