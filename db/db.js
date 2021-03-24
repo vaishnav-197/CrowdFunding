@@ -13,7 +13,7 @@ var dbfunctions = {
     name: req.body.name,
     country: req.body.role,
     school : req.body.address,
-    amount:parent(req.body.amount),
+    amount:parseInt(req.body.amount),
     email:req.body.email,
     prefer:req.body.prefer,
     comment:req.body.comment,
