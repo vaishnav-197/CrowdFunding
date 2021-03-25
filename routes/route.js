@@ -39,6 +39,7 @@ router.get('/signup', (req, res) => res.render('signup'));
 
 router.get('/readmore', (req, res) => res.render('readmore'));
 
+router.get('/aaa', (req, res) => res.render('aaa'));
 
 
 
