@@ -39,7 +39,16 @@ router.get('/signup', (req, res) => res.render('signup'));
 
 router.get('/readmore', (req, res) => res.render('readmore'));
 
-router.get('/aaa', (req, res) => res.render('aaa'));
+router.get('/more', (req, res) => { 
+  
+  res.render('more')
+
+});
+router.get('/details', (req, res) => { 
+  console.log(req.params.details)
+  res.render('more')
+
+});
 
 
 
@@ -148,7 +157,8 @@ router.get('/form', (req, res) => {
 router.post('/add', 
     dbfunction.adddata
   )
-  
+
+
 router.get('/donate', (req,res) => {
   var result = dbfunctions.showdonate()
   
