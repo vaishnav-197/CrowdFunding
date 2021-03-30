@@ -71,10 +71,7 @@ body {
 
 /* Choose color / quantity  */
 
-.btns-group {
-  width: 100%;
-  margin: 0 0 2rem 0;
-}
+
 
 /* Total Price  */
 
@@ -83,9 +80,9 @@ body {
 }
 
 .product-total p {
-  font-weight: 700;
+  font-weight: 600;
   color: #000;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .product-total h3{
@@ -109,13 +106,9 @@ body {
   color: #2e282a;
 }
 
-.product-btns a {
-  text-decoration: none;
-  background-color: #1EA5F7;
-  color:#000;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+
+.donate{
+  width: 60% !important;
 }
 
