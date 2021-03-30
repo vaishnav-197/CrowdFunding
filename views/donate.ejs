@@ -5,14 +5,14 @@
     <p><b>Sice we use Blockchain for transaction you can send money to people directly without a middleman. Hence this platform is very reliable and safe</b></p>
       <% if (typeof data != 'undefined') { %>
         <% if (data != '') { %>
-           
+          <% var i=0 %>
           <ul class="cards">
           <% data.forEach(function(datas){ %>
-            
+            <% i=i+1 %>
             <% if (datas.amount != datas.received) { %>
               <li class="cards_item">
                 <div class="card">
-                  <div class="card_image"><img src="/images/d1.jpg"></div>
+                  <div class="card_image"><img src="/images/<%= i %>.jpg"></div>
                   <div class="card_content">
                     <h2 class="card_title"><%= datas.name %></h2>
                     <p class="card_text"> <b> Description: </b><%=datas.comment %></p>
