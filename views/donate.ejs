@@ -2,7 +2,7 @@
 
 <div class="main">
     <h1>Fundraisers in Progress</h1>
-    
+    <p><b>Sice we use Blockchain for transaction you can send money to people directly without a middleman. Hence this platform is very reliable and safe</b></p>
       <% if (typeof data != 'undefined') { %>
         <% if (data != '') { %>
            
@@ -18,7 +18,7 @@
                     <p class="card_text"> <b> Description: </b><%=datas.comment %></p>
                     <p class="card_text"><b> Budget: </b><%=datas.amount %></p>
                     <p class="card_text"><b> Received: </b><%=datas.received %></p>
-                    <button class="btn card_btn"> <b>Read More</b> </button>
+                    <button type="submit" class="btn card_btn"><a href="/donate/more?desc=<%=datas.comment %>" class="new"> <b>Read More</b></a> </button>
                   </div>
                 </div>
               </li>

@@ -66,6 +66,21 @@ var dbfunctions = {
       //   console.log(doc.id, '=>', doc.data());
       // });
       return snapshot
+    },
+
+
+
+    detailspage : async function(desc){
+      const db = admin.firestore();
+      const citiesRef = db.collection('user');
+      const snapshot = await citiesRef.where('comment', '==', desc).get();
+      if (snapshot.empty) {
+        console.log('No matching documents.');
+        return '';
+      }  
+
+      
+      return snapshot
     }
 
 

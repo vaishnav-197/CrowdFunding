@@ -39,14 +39,63 @@ router.get('/signup', (req, res) => res.render('signup'));
 
 router.get('/readmore', (req, res) => res.render('readmore'));
 
-router.get('/more', (req, res) => { 
+
+
+
+router.get('/donate/more', (req, res) => { 
   
-  res.render('more')
+  var desc = req.query.desc 
+  console.log(desc)
+  var result = dbfunctions.detailspage(desc)
+  
+  result.then((data)=> {
+    var objects = []
+    if(result==''){
+      return ''
+    }
+    else{
+      data.forEach(doc => {
+        objects.push(doc.data())
+      });
+      return objects
+    }
+    
+  }).then((data) => {
+    console.log(data)
+    res.render('donatemore', {data:data})
+  })
+  
 
 });
-router.get('/details', (req, res) => { 
-  console.log(req.params.details)
-  res.render('more')
+
+
+
+
+
+
+
+router.get('/dashboard/more', (req, res) => { 
+  var desc = req.query.desc 
+  console.log(desc)
+  var result = dbfunctions.detailspage(desc)
+  
+  result.then((data)=> {
+    var objects = []
+    if(result==''){
+      return ''
+    }
+    else{
+      data.forEach(doc => {
+        objects.push(doc.data())
+      });
+      return objects
+    }
+    
+  }).then((data) => {
+    console.log(data)
+    res.render('more', {data:data})
+  })
+  
 
 });
 
@@ -84,7 +133,7 @@ admin
       
     }).then((resp)=> {
       // console.log(resp)
-      
+      // console.log(resp)
       res.render('dashboard' , {data:resp})
     })
     

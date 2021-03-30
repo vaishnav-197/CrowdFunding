@@ -1,9 +1,9 @@
 const express = require('express');
-const Blockchain = require('../blockchain');
+const Blockchain = require('../index');
 const bodyParser = require('body-parser');
-
+const P2pServer = require('./p2p-server.js');
 //get the port from the user or set the default port
-const HTTP_PORT = process.env.HTTP_PORT || 3001;
+const PORT = process.env.PORT || 3001;
 
 //create a new app
 const app  = express();
@@ -32,6 +32,13 @@ app.post('/mine',(req,res)=>{
 });
 
 // app server configurations
-app.listen(HTTP_PORT,()=>{
-    console.log(`listening on port ${HTTP_PORT}`);
+app.listen(PORT,()=>{
+    console.log(`listening on port ${PORT}`);
 })
+
+
+const p2pserver = new P2pServer(blockchain);
+// passing blockchain as a dependency
+
+
+p2pserver.listen(); // starts the p2pserver

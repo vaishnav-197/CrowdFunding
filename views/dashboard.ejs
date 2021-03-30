@@ -26,9 +26,9 @@
                 <p class="card_text"><b> Budget: </b><%=datas.amount %></p>
                 <p class="card_text"><b> Received: </b><%=datas.received %></p>
                 
-                <form action="/details?details=sudan">
-                  <button type="submit" class="btn card_btn"> <b>Read More</b> </button>
-               </form>
+                
+                  <button type="submit" class="btn card_btn"><a href="/dashboard/more?desc=<%=datas.comment %>" class="new"> <b>Read More</b></a> </button>
+               
               </div>
             </div>
           </li>
@@ -47,10 +47,10 @@
     <h1>Fulfilled Plans</h1>
     <% if (typeof data != 'undefined') { %>
     <% if (data != '') { %>
-      
+      <% var i=0 %>
       <ul class="cards">
       <% data.forEach(function(datas){ %>
-        
+        <%  i=i+1 %>
         <% if (datas.amount == datas.received) { %>
           <li class="cards_item">
             <div class="card">
@@ -61,11 +61,10 @@
                 
                 <p class="card_text"><b> Received: </b><%=datas.received %></p>
                 
-                <button class="btn card_btn">Read More</button>
+                <button type="submit" class="btn card_btn"><a href="/dashboard/more?desc=<%=datas.comment %>" class="new"> <b>Read More</b></a> </button>
               </div>
             </div>
           </li>
-          
           <%}  %>
             
         <% }) %>

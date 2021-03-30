@@ -52,6 +52,11 @@ body {
       font-size: 40px;
       color: #000;
       line-height: 1; }
+      .custom-section .col-lg-4 h4 {
+        font-weight: 300;
+        font-size: 30px;
+        color: #000;
+        line-height: 1; }
     .custom-section .col-lg-4 p {
       color: #000;
       font-size: 20px;
